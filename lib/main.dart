@@ -9,7 +9,7 @@ import 'package:convo_sphere/core/constants/constant_files.dart';
 void main() {
   runApp(
      DevicePreview(
-    
+    enabled: false,
       builder: (context) => const MyApp(
         
       ),
@@ -24,10 +24,12 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ScreenUtilInit(
+      designSize: const Size(440, 956),
       minTextAdapt: true,
       splitScreenMode: true, 
       builder: (context, child) {
         return GetMaterialApp(
+         
           debugShowCheckedModeBanner: false,
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,

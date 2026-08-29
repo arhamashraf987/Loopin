@@ -1,10 +1,7 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
-import 'package:convo_sphere/features/onboarding/controller/onboarding_controller.dart';
 
 class GradientButton extends StatelessWidget {
    GradientButton({required this.label, required this.onTap});
-
-    final OnboardingController controller = Get.find<OnboardingController>();
 
 
   final String label;

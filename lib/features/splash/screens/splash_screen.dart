@@ -1,5 +1,5 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
-import 'package:convo_sphere/features/splash/widgets/logo.dart';
+import 'package:convo_sphere/core/shared_widgets/logo.dart';
 class SplashScreen extends StatelessWidget {
    SplashScreen({super.key});
 
