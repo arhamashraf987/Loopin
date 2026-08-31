@@ -1,4 +1,5 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
+import 'package:convo_sphere/features/Auth/screens/auth_screen.dart';
 import 'package:convo_sphere/features/Auth/screens/login_screen.dart';
 import 'package:convo_sphere/features/Auth/screens/signUp.dart';
 import 'package:convo_sphere/features/Auth/bindings/auth_binding.dart';
@@ -12,16 +13,14 @@ class AppRoutes {
   static const onboarding = '/onboarding';
   static const signup = '/signup';
   static const login ='/login';
+  static const authScreen ='/auth';
   
 
   static final pages = <GetPage>[
     GetPage(name: splash, page: () => SplashScreen()),
-    GetPage(
-      name: onboarding,
-      page: () => OnboardingScreen(),
-      binding: OnboardingBinding()
-    ),
+    GetPage(name: onboarding, page: () => OnboardingScreen(), binding: OnboardingBinding()),
     GetPage(name: signup, page: ()=>SignUp(), binding: AuthBinding()),
-    GetPage(name: login, page: ()=> LoginScreen())
+    GetPage(name: login, page: ()=> LoginScreen(), binding: AuthBinding()),
+    GetPage(name: authScreen, page: ()=>AuthScreen())
   ];
 }

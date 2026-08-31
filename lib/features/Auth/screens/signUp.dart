@@ -1,8 +1,11 @@
+import 'package:convo_sphere/core/constants/app_routes.dart';
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/core/shared_widgets/gradient_button.dart';
 import 'package:convo_sphere/core/shared_widgets/reusable_border_styling.dart';
+import 'package:convo_sphere/core/shared_widgets/text_field.dart';
 import 'package:convo_sphere/features/Auth/controller/auth_controller.dart';
 import 'package:convo_sphere/core/shared_widgets/logo.dart';
+import 'package:convo_sphere/features/Auth/widgets/password_field.dart';
 class SignUp extends StatelessWidget {
    SignUp({super.key});
   
@@ -29,7 +32,7 @@ class SignUp extends StatelessWidget {
                       backgroundColor:  AppColors.glassButtonBackgroundColor.withValues(alpha: 0.2),
                                     child: Icon(Icons.arrow_back, size: 24.sp, color: AppColors.primaryWhiteTextColor,)),
                   ),
-                SizedBox(width: 125.w,),
+                SizedBox(width: 105.w,),
                 Logo(
                   height: 40.h,
                   width: 40.w,
@@ -83,13 +86,14 @@ class SignUp extends StatelessWidget {
                    SizedBox(height: 27.h,),
                   Text("Password", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),),
                   SizedBox(height: 10.h,),
-                  passwordBuildTextField(controller),
+                  PasswordField(),
                   SizedBox(height: 27.h,),
                   Center(child: Text("By signing up you agree to our Terms & Privacy Policy.", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary, fontSize: 13.sp,))),
                   SizedBox(height: 27.h,),
                   GradientButton(label: 'Sign Up', onTap: (){}),
-                  SizedBox(height: 27.h,),
+                  Spacer(),
                   alreadyAccount(),
+                  SizedBox(height: 30.h,),
                  
                   
                           ],
@@ -102,77 +106,17 @@ class SignUp extends StatelessWidget {
     );
     
   }
-  Widget buildTextField() {
-    return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.r),
-                      color: AppColors.surfaceColor,
-                      border: Border.all(
-                        color: AppColors.borderStylingColor2.withOpacity(0.2)
-                      )
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: 15.w),
-                      child: Expanded(
-                        child: TextField(
-                          style: AppTextStyles.regular,
-                          decoration: InputDecoration(
-                             border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
-  }
-  Widget passwordBuildTextField(AuthController controller) {
-    return Container(
-                    decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(50.r),
-                      color: AppColors.surfaceColor,
-                      border: Border.all(
-                        color: AppColors.borderStylingColor2.withOpacity(0.2)
-                      )
-                    ),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: 15.w, right: 20.w),
-                      child: Obx(() {
-                        final isSecure = controller.isSecure.value;
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                style: AppTextStyles.regular,
-                                obscureText: isSecure,
-                                decoration: InputDecoration(
-                                   border: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                ),
-                              ),
-                            ),
-                            GestureDetector(
-                              onTap: (){
-                                controller.togglePassword();
-                              },
-                              child: Icon(isSecure? Icons.visibility_outlined : Icons.visibility_off_outlined, 
-                              color: AppColors.primaryWhiteTextColor, 
-                              size: 24.sp,))
-                          ],
-                        );
-                      }
-                      ),
-                    ),
-                  );
-  }
 Widget alreadyAccount() {
   return Row(
     mainAxisAlignment: MainAxisAlignment.center,
     children: [
       Text("Already have an accouunt?", style: AppTextStyles.regular,),
       SizedBox(width: 6.w,),
-      Text("Login", style: AppTextStyles.regular.copyWith(color: AppColors.violet),)
+      GestureDetector(
+        onTap: (){
+          Get.offNamed(AppRoutes.login);
+        },
+        child: Text("Login", style: AppTextStyles.regular.copyWith(color: AppColors.violet),))
     ],
   );
 }

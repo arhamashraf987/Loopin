@@ -9,7 +9,7 @@ import 'package:convo_sphere/core/constants/constant_files.dart';
 void main() {
   runApp(
      DevicePreview(
-    enabled: false,
+    enabled: true,
       builder: (context) => const MyApp(
         
       ),
@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           getPages: AppRoutes.pages,
-          initialRoute: AppRoutes.onboarding,
+          initialRoute: AppRoutes.authScreen,
         );
       },
     );
