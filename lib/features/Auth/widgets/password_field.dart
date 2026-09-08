@@ -15,34 +15,32 @@ class PasswordField extends StatelessWidget {
                         color: AppColors.borderStylingColor2.withOpacity(0.2)
                       )
                     ),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: 15.w, right: 20.w),
-                      child: Obx(() {
-                        final isSecure = controller.isSecure.value;
-                        return Row(
-                          children: [
-                            Expanded(
-                              child: TextField(
-                                style: AppTextStyles.regular,
-                                obscureText: isSecure,
-                                decoration: InputDecoration(
-                                   border: InputBorder.none,
-                                  enabledBorder: InputBorder.none,
-                                  focusedBorder: InputBorder.none,
-                                ),
+                    child: Obx(() {
+                      final isSecure = controller.isSecure.value;
+                      return Row(
+                        children: [
+                          Expanded(
+                            child: TextField(
+                              style: AppTextStyles.regular,
+                              obscureText: isSecure,
+                              decoration: InputDecoration(
+                                 border: InputBorder.none,
+                                enabledBorder: InputBorder.none,
+                                focusedBorder: InputBorder.none,
+                                contentPadding: EdgeInsetsGeometry.only(left: 15.w, right: 20.w),
                               ),
                             ),
-                            GestureDetector(
-                              onTap: (){
-                                controller.togglePassword();
-                              },
-                              child: Icon(isSecure? Icons.visibility_outlined : Icons.visibility_off_outlined, 
-                              color: AppColors.primaryWhiteTextColor, 
-                              size: 24.sp,))
-                          ],
-                        );
-                      }
-                      ),
+                          ),
+                          GestureDetector(
+                            onTap: (){
+                              controller.togglePassword();
+                            },
+                            child: Icon(isSecure? Icons.visibility_outlined : Icons.visibility_off_outlined, 
+                            color: AppColors.primaryWhiteTextColor, 
+                            size: 24.sp,))
+                        ],
+                      );
+                    }
                     ),
                   );;
   }

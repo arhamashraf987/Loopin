@@ -1,3 +1,4 @@
+import 'package:convo_sphere/core/constants/app_routes.dart';
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/core/shared_widgets/gradient_button.dart';
 import 'package:convo_sphere/core/shared_widgets/logo.dart';
@@ -22,7 +23,11 @@ class LoginScreen extends StatelessWidget {
         padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 40.h),
         child: Column(
           children: [
-            HeaderReusable(),
+            HeaderReusable(
+              onTap: (){
+                Get.toNamed(AppRoutes.authScreen);
+              },
+            ),
               SizedBox(height: 100.h,),
             Text("Welcome Back!", style: TextStyle(
               color: AppColors.primaryWhiteTextColor,

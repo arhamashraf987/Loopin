@@ -91,7 +91,7 @@ class SignUp extends StatelessWidget {
                   Center(child: Text("By signing up you agree to our Terms & Privacy Policy.", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary, fontSize: 13.sp,))),
                   SizedBox(height: 27.h,),
                   GradientButton(label: 'Sign Up', onTap: (){}),
-                  Spacer(),
+                  SizedBox(height: 15.h,),
                   alreadyAccount(),
                   SizedBox(height: 30.h,),
                  

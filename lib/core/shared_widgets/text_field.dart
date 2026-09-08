@@ -12,16 +12,14 @@ class buildTextField extends StatelessWidget {
                         color: AppColors.borderStylingColor2.withOpacity(0.2)
                       )
                     ),
-                    child: Padding(
-                      padding: EdgeInsetsGeometry.only(left: 15.w),
-                      child: Expanded(
-                        child: TextField(
-                          style: AppTextStyles.regular,
-                          decoration: InputDecoration(
-                             border: InputBorder.none,
-                            enabledBorder: InputBorder.none,
-                            focusedBorder: InputBorder.none,
-                          ),
+                    child: Expanded(
+                      child: TextField(
+                        style: AppTextStyles.regular,
+                        decoration: InputDecoration(
+                           border: InputBorder.none,
+                          enabledBorder: InputBorder.none,
+                          focusedBorder: InputBorder.none,
+                          contentPadding:  EdgeInsetsGeometry.only(left: 15.w),
                         ),
                       ),
                     ),

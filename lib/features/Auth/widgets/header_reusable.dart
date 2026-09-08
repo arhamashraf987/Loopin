@@ -3,20 +3,20 @@ import 'package:convo_sphere/core/shared_widgets/logo.dart';
 import 'package:convo_sphere/core/shared_widgets/reusable_border_styling.dart';
 import 'package:convo_sphere/features/Auth/screens/signUp.dart';
 class HeaderReusable extends StatelessWidget {
-   HeaderReusable({super.key});
+  final VoidCallback onTap;
+   HeaderReusable({super.key,
+   required this.onTap
+   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
       children: [
          GestureDetector(
-                    onTap: (){
-                      Get.off(SignUp());
-                    },
+                    onTap: onTap,
                     child: ReusableBorderStyling(
                       height: 36.h,
                       width: 36.w,
-                      borderRadius: 23.r,
                       backgroundColor:  AppColors.glassButtonBackgroundColor.withValues(alpha: 0.2),
                                     child: Icon(Icons.arrow_back, size: 24.sp, color: AppColors.primaryWhiteTextColor,)),
                   ),
@@ -32,6 +32,6 @@ class HeaderReusable extends StatelessWidget {
                       style: AppTextStyles.bold.copyWith(fontSize: 26.sp),
                     ),
       ],
-    );;
+    );
   }
 }

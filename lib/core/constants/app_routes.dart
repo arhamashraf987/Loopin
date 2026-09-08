@@ -1,6 +1,7 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/features/Auth/screens/auth_screen.dart';
 import 'package:convo_sphere/features/Auth/screens/login_screen.dart';
+import 'package:convo_sphere/features/Auth/screens/phone_code_screen.dart';
 import 'package:convo_sphere/features/Auth/screens/phone_verify_screen.dart';
 import 'package:convo_sphere/features/Auth/screens/signUp.dart';
 import 'package:convo_sphere/features/Auth/bindings/auth_binding.dart';
@@ -15,7 +16,8 @@ class AppRoutes {
   static const signup = '/signup';
   static const login ='/login';
   static const authScreen ='/auth';
-  static const phoneVerify = '/phone-verify';
+  static const phoneVerify = '/phone_verify';
+  static const phoneCode = '/phone_code';
   
 
   static final pages = <GetPage>[
@@ -25,6 +27,7 @@ class AppRoutes {
     GetPage(name: login, page: ()=> LoginScreen(), binding: AuthBinding()),
     GetPage(name: authScreen, page: ()=>AuthScreen(), binding: AuthBinding()),
     GetPage(name: phoneVerify, page: ()=>PhoneVerifyScreen(), binding: AuthBinding()),
+    GetPage(name: phoneCode, page: ()=>PhoneCodeScreen(), binding: AuthBinding())
     
   ];
 }

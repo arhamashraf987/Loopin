@@ -1,11 +1,12 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
 
 class GradientButton extends StatelessWidget {
-   GradientButton({required this.label, required this.onTap});
+   GradientButton({required this.label, required this.onTap, this.isEnabled});
 
 
   final String label;
   final VoidCallback onTap;
+   final   bool? isEnabled;
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,10 @@ class GradientButton extends StatelessWidget {
               gradient: LinearGradient(
                 begin: Alignment.centerLeft,
                 end: Alignment.centerRight,
-                colors: [AppColors.violet, AppColors.coral],
+                colors:  [ 
+                 AppColors.violet,
+                 AppColors.coral
+                 ],
               ),
               borderRadius: BorderRadius.circular(999.r),
             ),

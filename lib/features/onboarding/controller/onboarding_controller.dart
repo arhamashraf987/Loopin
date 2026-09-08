@@ -81,7 +81,7 @@ class OnboardingController extends GetxController {
     if (!isLastPage) {
       currentPage.value++;
     } else {
-      Get.offAllNamed(AppRoutes.signup);
+      Get.offAllNamed(AppRoutes.authScreen);
     }
   }
 

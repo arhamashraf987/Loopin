@@ -11,7 +11,7 @@ class PhoneField extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(8.r),
+        borderRadius: BorderRadius.circular(16.r),
         border: Border.all(
          color:  AppColors.violet
         )
@@ -42,6 +42,7 @@ class PhoneField extends StatelessWidget {
                   height: 35.h,
                 ),
                 Expanded(child: TextField(
+                  controller: controller.numberController,
                   style: AppTextStyles.regular,
                   keyboardType: TextInputType.number,
                   inputFormatters: [
@@ -82,10 +83,12 @@ class PhoneField extends StatelessWidget {
                               controller: controller.countryQuery,
                               style: AppTextStyles.regular,
                               decoration: InputDecoration(
+                                hintText: "Search Country name here",
+                                hintStyle: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),
                                  border: InputBorder.none,
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsets.only(left: 15.w)
+                                contentPadding: EdgeInsets.only(left: 15.w,bottom: 10.h)
                               ),
                             ),
                           ),
