@@ -1,11 +1,16 @@
 import 'dart:async';
 
+import 'package:convo_sphere/core/constants/app_routes.dart';
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/features/Auth/models/country_data.dart';
 import 'package:convo_sphere/features/Auth/models/country_model.dart';
 
 class AuthController extends GetxController {
-  final RxBool isSecure = true.obs;
+  final TextEditingController signupPass1 = TextEditingController();
+  final TextEditingController signupPass2 = TextEditingController();
+  final RxBool isSecure1 = true.obs;
+  final RxBool isSecure2 = true.obs;
+  final RxBool phoneFieldError = false.obs;
   final Rx<Country> selectedCountry = CountryData.countries.first.obs;
   final TextEditingController countryQuery = TextEditingController();
   final RxList<Country> filteredCountries = <Country>[].obs;
@@ -16,6 +21,7 @@ class AuthController extends GetxController {
   final List<RxBool> hasDigit = List.generate(6, (_) => false.obs);
   final RxInt resendTimer =0.obs;
   final RxBool isResendEnabled = true.obs;
+  String get fullPhoneNumber => "${selectedCountry.value.dialCode}${phoneNumber.value}";
   Timer? _resendTimer;
 
   @override
@@ -39,8 +45,22 @@ class AuthController extends GetxController {
     _resendTimer?.cancel();
     super.onClose();
   }
+
+void sendCode() {
+  phoneNumber.value = numberController.text;
+  if(numberController.text.isEmpty) {
+    phoneFieldError.value=true;
+      Get.snackbar(
+        colorText: Colors.white,
+        "Error!", "Phone numeber field is empty" ); 
+      } else {
+        phoneFieldError.value=false;
+        Get.toNamed(AppRoutes.phoneCode);
+      }
+  
+}
   void startResendTimer() {
-    isResendEnabled.value =true;
+    isResendEnabled.value =false;
     resendTimer.value =120;
     _resendTimer?.cancel();
     _resendTimer = Timer.periodic(const Duration(seconds: 1), ((timer) {
@@ -59,10 +79,12 @@ class AuthController extends GetxController {
     return "$minutes:${seconds.toString().padLeft(2, '0')}";
   }
 
-  void togglePassword() {
-    isSecure.value = !isSecure.value;
+  void togglePassword1() {
+    isSecure1.value = !isSecure1.value;
   }
-
+  void togglePassword2() {
+    isSecure2.value = !isSecure2.value;
+  }
   void selectCountry(Country country) {
     selectedCountry.value = country;
   }
@@ -93,13 +115,31 @@ class AuthController extends GetxController {
     }
   }
 
-  void onSubmitCode(String value) {
+  void onSubmitCode() {
     final fullCode = codeController.map((c) => c.text).join();
     if (fullCode.length == 6) {
       print("Full Code");
     } else {
-      print("Write full code");
+      phoneFieldError.value=true;
+      Get.snackbar(
+        colorText: Colors.white,
+        "Error!", "Code field is Empty" );
     }
   }
+
+  void sendCodeAagain() {
+    startResendTimer();
+  }
+  void signUp(){
+    if(signupPass1?.text == signupPass2?.text) {
+      Get.toNamed(AppRoutes.AuthUsername);
+    } else {
+       Get.snackbar(
+        colorText: Colors.white,
+        "Error!", "Password Not match" );
+    
+    }
+  }
+  
 
 }

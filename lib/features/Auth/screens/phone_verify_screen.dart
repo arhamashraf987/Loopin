@@ -1,13 +1,16 @@
 import 'package:convo_sphere/core/constants/app_routes.dart';
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/core/shared_widgets/gradient_button.dart';
+import 'package:convo_sphere/features/Auth/controller/auth_controller.dart';
 import 'package:convo_sphere/features/Auth/widgets/header_reusable.dart';
 import 'package:convo_sphere/features/Auth/widgets/phone_field.dart';
 import 'package:flutter/material.dart' as flutter;
 
 class PhoneVerifyScreen extends StatelessWidget {
+    final AuthController controller = Get.find<AuthController>();
 
-  const PhoneVerifyScreen({super.key});
+
+   PhoneVerifyScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -29,7 +32,10 @@ class PhoneVerifyScreen extends StatelessWidget {
            SizedBox(height: 15.h,),
            Text("Standard message and data rates may apply.",style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary, fontSize: 14.sp),),
            Spacer(),
-           GradientButton(label: "Send Code", onTap: (){}),
+           GradientButton(label: "Send Code", onTap: (){
+            controller.sendCode();
+            
+           }),
            SizedBox(height: 50.h,)
 
 

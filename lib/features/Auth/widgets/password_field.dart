@@ -1,7 +1,10 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/features/Auth/controller/auth_controller.dart';
 class PasswordField extends StatelessWidget {
-  const PasswordField({super.key});
+  final TextEditingController? textEditingController;
+  final VoidCallback? onTap;
+  final bool isSecure;
+  const PasswordField({super.key,  this.textEditingController, this.onTap, this.isSecure = false});
 
   @override
   Widget build(BuildContext context) {
@@ -15,33 +18,33 @@ class PasswordField extends StatelessWidget {
                         color: AppColors.borderStylingColor2.withOpacity(0.2)
                       )
                     ),
-                    child: Obx(() {
-                      final isSecure = controller.isSecure.value;
-                      return Row(
+                    child:  Row(
                         children: [
                           Expanded(
                             child: TextField(
+                              controller: textEditingController,
                               style: AppTextStyles.regular,
                               obscureText: isSecure,
                               decoration: InputDecoration(
                                  border: InputBorder.none,
                                 enabledBorder: InputBorder.none,
                                 focusedBorder: InputBorder.none,
-                                contentPadding: EdgeInsetsGeometry.only(left: 15.w, right: 20.w),
+                                contentPadding: EdgeInsetsGeometry.only(left: 15.w,),
                               ),
                             ),
                           ),
-                          GestureDetector(
-                            onTap: (){
-                              controller.togglePassword();
-                            },
-                            child: Icon(isSecure? Icons.visibility_outlined : Icons.visibility_off_outlined, 
-                            color: AppColors.primaryWhiteTextColor, 
-                            size: 24.sp,))
+                          Padding(
+                            padding:  EdgeInsets.only(right: 20.w),
+                            child: GestureDetector(
+                              onTap: onTap,
+                              child: Icon(isSecure? Icons.visibility_outlined : Icons.visibility_off_outlined, 
+                              color: AppColors.primaryWhiteTextColor, 
+                              size: 24.sp,)),
+                          )
                         ],
+                    )
                       );
                     }
-                    ),
-                  );;
+                    
+                 
   }
-}

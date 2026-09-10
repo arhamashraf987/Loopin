@@ -1,7 +1,5 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/features/Auth/controller/auth_controller.dart';
-import 'package:convo_sphere/features/Auth/models/country_data.dart';
-import 'package:convo_sphere/features/Auth/models/country_model.dart';
 import 'package:flutter/services.dart';
 class PhoneField extends StatelessWidget {
   final AuthController controller = Get.put(AuthController());
@@ -9,53 +7,55 @@ class PhoneField extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Container(
-      decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(16.r),
-        border: Border.all(
-         color:  AppColors.violet
-        )
-      ),
-      child: Row(
-        children: [
-          Padding(
-            padding:  EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
-            child: GestureDetector(
-              onTap: (){
-                Get.bottomSheet(phoneSheet(controller));
-              },
-              child: Obx(()=>
-                 Row(
-                  children: [
-                    Text(controller.selectedCountry.value.isoCode, style: AppTextStyles.regular,),
-                    SizedBox(width: 6.w,),
-                    Text(controller.selectedCountry.value.dialCode, style: AppTextStyles.regular,),
-                    
-                  ],
+    return Obx(()=>
+      Container(
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(16.r),
+          border: Border.all(
+           color: controller.phoneFieldError.value? AppColors.bgRadius2 : AppColors.violet
+          )
+        ),
+        child: Row(
+          children: [
+            Padding(
+              padding:  EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+              child: GestureDetector(
+                onTap: (){
+                  Get.bottomSheet(phoneSheet(controller));
+                },
+                child: Obx(()=>
+                   Row(
+                    children: [
+                      Text(controller.selectedCountry.value.isoCode, style: AppTextStyles.regular,),
+                      SizedBox(width: 6.w,),
+                      Text(controller.selectedCountry.value.dialCode, style: AppTextStyles.regular,),
+                      
+                    ],
+                  ),
                 ),
               ),
             ),
-          ),
-          Container(
-                  width: 1,
-                  color: AppColors.violet,
-                  height: 35.h,
-                ),
-                Expanded(child: TextField(
-                  controller: controller.numberController,
-                  style: AppTextStyles.regular,
-                  keyboardType: TextInputType.number,
-                  inputFormatters: [
-                    FilteringTextInputFormatter.digitsOnly,
-                    LengthLimitingTextInputFormatter(10),
-                  ],
-                  decoration: InputDecoration(
-                    border: InputBorder.none,
-                    hintText: "Enter phone number here", hintStyle: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),
-                    contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+            Container(
+                    width: 1,
+                    color: AppColors.violet,
+                    height: 35.h,
                   ),
-                ))
-        ],
+                  Expanded(child: TextField(
+                    controller: controller.numberController,
+                    style: AppTextStyles.regular,
+                    keyboardType: TextInputType.number,
+                    inputFormatters: [
+                      FilteringTextInputFormatter.digitsOnly,
+                      LengthLimitingTextInputFormatter(10),
+                    ],
+                    decoration: InputDecoration(
+                      border: InputBorder.none,
+                      hintText: "Enter phone number here", hintStyle: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),
+                      contentPadding: EdgeInsets.symmetric(horizontal: 12.w, vertical: 14.h),
+                    ),
+                  ))
+          ],
+        ),
       ),
     );
   }

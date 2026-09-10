@@ -6,8 +6,8 @@ import 'package:convo_sphere/features/Auth/controller/auth_controller.dart';
 import 'package:flutter/services.dart';
 
 class PhoneCodeScreen extends StatelessWidget {
-    final AuthController controller = Get.find<AuthController>();
-   PhoneCodeScreen({super.key});
+  final AuthController controller = Get.find<AuthController>();
+  PhoneCodeScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -44,17 +44,36 @@ class PhoneCodeScreen extends StatelessWidget {
             ),
             SizedBox(height: 10.h),
             Text(
-              " Sent to +92-3248908297",
+              " Sent to "+ controller.fullPhoneNumber,
               style: AppTextStyles.regular.copyWith(
                 color: AppColors.textPrimary,
               ),
             ),
             SizedBox(height: 40.h),
             _codeBox(controller),
-            SizedBox(height: 20.h,),
-            Obx(()=> controller.isResendEnabled.value? Text(" Send code again?", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),) : Text("Resend code in " + controller.formattedResendTime, style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),)),
+            SizedBox(height: 20.h),
+            Obx(
+              () => controller.isResendEnabled.value
+                  ? GestureDetector(
+                    onTap: (){
+                      controller.sendCodeAagain();
+                    },
+                    child: Text(
+                        " Send code again?",
+                        style: AppTextStyles.regular.copyWith(
+                          color: AppColors.coral,
+                        ),
+                      ),
+                  )
+                  : Text(
+                      "Resend code in " + controller.formattedResendTime,
+                      style: AppTextStyles.regular.copyWith(
+                        color: AppColors.textPrimary,
+                      ),
+                    ),
+            ),
             Spacer(),
-            GradientButton(label: "verify", onTap: (){},),
+            GradientButton(label: "verify", onTap: () { controller.onSubmitCode();}),
             SizedBox(height: 50.h),
           ],
         ),
@@ -70,50 +89,50 @@ class PhoneCodeScreen extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         ...List.generate(6, (index) {
-         return 
-            Padding(
-             padding:  EdgeInsets.symmetric(horizontal: boxSpace),
-             child: Obx(() {
-             final hasText = controller.hasDigit[index].value;
-               return Container(
-                  height: boxHeight,
-                  width: boxWidth,
-                  decoration: BoxDecoration(
-                    color: AppColors.surfaceColor,
-                    borderRadius: BorderRadius.circular(12.r),
-                    boxShadow:  [ hasText?
-                      BoxShadow(
-                        color: AppColors.violet.withOpacity(0.4),
-                        blurRadius: 10,
-                        spreadRadius: 1
-
-                      ) : BoxShadow(),
-                    ],
-                    border: Border.all(
-                      color: hasText? AppColors.violet: AppColors.borderStylingColor2.withOpacity(0.2),
-                    ),
+          return Padding(
+            padding: EdgeInsets.symmetric(horizontal: boxSpace),
+            child: Obx(() {
+              final hasText = controller.hasDigit[index].value;
+              return Container(
+                height: boxHeight,
+                width: boxWidth,
+                decoration: BoxDecoration(
+                  color: AppColors.surfaceColor,
+                  borderRadius: BorderRadius.circular(12.r),
+                  boxShadow: [
+                    hasText
+                        ? BoxShadow(
+                            color: AppColors.violet.withOpacity(0.4),
+                            blurRadius: 10,
+                            spreadRadius: 1,
+                          )
+                        : BoxShadow(),
+                  ],
+                  border: Border.all(
+                    color: hasText
+                        ? AppColors.violet
+                        : AppColors.borderStylingColor2.withOpacity(0.2),
                   ),
-                  child: TextField(
-                    controller: controller.codeController[index],
-                    focusNode: controller.codeFocus[index],
-                    style: AppTextStyles.regular.copyWith(fontSize: 30.sp),
-                    keyboardType: TextInputType.number,
-                    inputFormatters: [
-                      FilteringTextInputFormatter.digitsOnly,
-                      LengthLimitingTextInputFormatter(1),
-                    ],
-                    decoration: InputDecoration(
-                      border: InputBorder.none,
-                      contentPadding: EdgeInsets.only(left: 13.w),
-                    ),
-                    onChanged: (value) => controller.onChanged(index, value),
+                ),
+                child: TextField(
+                  controller: controller.codeController[index],
+                  focusNode: controller.codeFocus[index],
+                  style: AppTextStyles.regular.copyWith(fontSize: 30.sp),
+                  keyboardType: TextInputType.number,
+                  inputFormatters: [
+                    FilteringTextInputFormatter.digitsOnly,
+                    LengthLimitingTextInputFormatter(1),
+                  ],
+                  decoration: InputDecoration(
+                    border: InputBorder.none,
+                    contentPadding: EdgeInsets.only(left: 13.w),
                   ),
-                );
-             }
-             ),
-         );
-        }
-        ),
+                  onChanged: (value) => controller.onChanged(index, value),
+                ),
+              );
+            }),
+          );
+        }),
       ],
     );
   }

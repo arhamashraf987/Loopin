@@ -1,6 +1,7 @@
 import 'package:convo_sphere/core/constants/constant_files.dart';
 class buildTextField extends StatelessWidget {
-  const buildTextField({super.key});
+  final TextEditingController? textController;
+  const buildTextField({super.key, this.textController});
 
   @override
   Widget build(BuildContext context) {
@@ -12,15 +13,14 @@ class buildTextField extends StatelessWidget {
                         color: AppColors.borderStylingColor2.withOpacity(0.2)
                       )
                     ),
-                    child: Expanded(
-                      child: TextField(
-                        style: AppTextStyles.regular,
-                        decoration: InputDecoration(
-                           border: InputBorder.none,
-                          enabledBorder: InputBorder.none,
-                          focusedBorder: InputBorder.none,
-                          contentPadding:  EdgeInsetsGeometry.only(left: 15.w),
-                        ),
+                    child: TextField(
+                      controller: textController,
+                      style: AppTextStyles.regular,
+                      decoration: InputDecoration(
+                         border: InputBorder.none,
+                        enabledBorder: InputBorder.none,
+                        focusedBorder: InputBorder.none,
+                        contentPadding:  EdgeInsetsGeometry.only(left: 15.w),
                       ),
                     ),
                   );
