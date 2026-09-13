@@ -2,6 +2,7 @@ import 'package:convo_sphere/core/constants/constant_files.dart';
 import 'package:convo_sphere/core/shared_widgets/gradient_button.dart';
 import 'package:convo_sphere/core/shared_widgets/logo.dart';
 import 'package:convo_sphere/core/shared_widgets/text_field.dart';
+
 class AuthUsernameScreen extends StatelessWidget {
   const AuthUsernameScreen({super.key});
 
@@ -24,10 +25,16 @@ class AuthUsernameScreen extends StatelessWidget {
                 ),
               ],
             ),
-             SizedBox(height: 50.h,),
-                Padding(
-                  padding: EdgeInsetsGeometry.symmetric(horizontal: 20.w),
-                  child: Stack(children: [ Logo(child: Icon(Icons.add, color: AppColors.primaryWhiteTextColor,),
+            SizedBox(height: 50.h),
+            Padding(
+              padding: EdgeInsetsGeometry.symmetric(horizontal: 20.w),
+              child: Stack(
+                children: [
+                  Logo(
+                    child: Icon(
+                      Icons.add,
+                      color: AppColors.primaryWhiteTextColor,
+                    ),
                   ),
                   Positioned(
                     top: 64.h,
@@ -37,30 +44,52 @@ class AuthUsernameScreen extends StatelessWidget {
                       width: 24.w,
                       decoration: BoxDecoration(
                         color: AppColors.primaryWhiteTextColor,
-                        borderRadius: BorderRadius.circular(99.r)
+                        borderRadius: BorderRadius.circular(99.r),
                       ),
-                      child: Icon(Icons.photo_camera, color: AppColors.primaryBlackTextColor, size: 20.sp,),
+                      child: Icon(
+                        Icons.photo_camera,
+                        color: AppColors.primaryBlackTextColor,
+                        size: 20.sp,
+                      ),
                     ),
-                  )
-                            ],
-                            ),
+                  ),
+                ],
+              ),
+            ),
+            SizedBox(height: 40.h),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "First Name",
+                  style: AppTextStyles.regular.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-                SizedBox(height: 40.h,),
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                     Text("Full Name", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),),
-                    SizedBox(height: 10.h,),
-                    buildTextField(),
-                    SizedBox(height: 27.h,),
-                    Text("Username", style: AppTextStyles.regular.copyWith(color: AppColors.textPrimary),),
-                    SizedBox(height: 10.h,),
-                   buildTextField(),
-                     SizedBox(height: 27.h,),
-                  ],
+                SizedBox(height: 10.h),
+                buildTextField(),
+                SizedBox(height: 27.h),
+                 Text(
+                  "Last Name",
+                  style: AppTextStyles.regular.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
                 ),
-                GradientButton(label: "Continue", onTap: (){})
-               
+                SizedBox(height: 10.h),
+                buildTextField(),
+                SizedBox(height: 27.h),
+                Text(
+                  "Username",
+                  style: AppTextStyles.regular.copyWith(
+                    color: AppColors.textPrimary,
+                  ),
+                ),
+                SizedBox(height: 10.h),
+                buildTextField(),
+                SizedBox(height: 27.h),
+              ],
+            ),
+            GradientButton(label: "Continue", onTap: () {}),
           ],
         ),
       ),

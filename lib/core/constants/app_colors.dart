@@ -7,7 +7,7 @@ class AppColors {
   static const bgRadius2 = Color(0xffFF4757);
   static const borderStylingColor1 = Color(0xff000000);
   static const borderStylingColor2 = Color(0xffFFFFFF);
-   static const glassButtonBackgroundColor = Color(0xFF404040);
+   static const glassButtonBackgroundColor = Color.fromARGB(255, 22, 11, 11);
    static const primaryBlackTextColor = Color(0xff212121);
    static const textPrimary = Color(0xffA99FC2);
    static const surfaceColor = Color(0xff211A33);

@@ -5,18 +5,21 @@ class Logo extends StatelessWidget {
   final double? height;
   final Widget? child;
   final double? iconSize;
+  final double? paddingWidth;
   const Logo({super.key, 
    this.child,
    this.height,
    this.width,
-   this.iconSize});
+   this.iconSize,
+   this.paddingWidth
+   });
 
   @override
   Widget build(BuildContext context) {
     return  Container(
       width: width?? 92.w,
       height: height?? 92.h,
-      padding: EdgeInsets.all(3.w),
+      padding: EdgeInsets.all(paddingWidth?? 3.w),
       decoration: BoxDecoration(
         shape: BoxShape.circle,
         gradient: SweepGradient(

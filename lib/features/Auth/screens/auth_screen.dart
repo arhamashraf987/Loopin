@@ -11,61 +11,89 @@ class AuthScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: AppColors.backgroundColor,
-      body: Container(
-        padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 40.h),
-        child: Column(
-          children: [
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Logo(height: 40.h, width: 40.w, iconSize: 14),
-                SizedBox(width: 10.w),
-                Text(
-                  AppText.appName,
-                  style: AppTextStyles.bold.copyWith(fontSize: 26.sp),
+      body: Stack(
+        children: [ 
+          Container(
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  AppColors.bgRadius1.withOpacity(0.35),
+                  Colors.transparent,
+                ],
+                radius: 0.9,
+                center: const Alignment(0.4, -0.3),
+              ),
+            ),
+          ),
+          Container(
+            decoration: BoxDecoration(
+              gradient: RadialGradient(
+                colors: [
+                  AppColors.bgRadius2.withOpacity(0.2),
+                  Colors.transparent,
+                ],
+                radius: 0.9,
+                center: const Alignment(-0.3, 0.6),
+              ),
+            ),
+          ),
+          Container(
+          padding: EdgeInsets.only(left: 20.w, right: 20.w, top: 40.h),
+          child: Column(
+            children: [
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Logo(height: 40.h, width: 40.w, iconSize: 14),
+                  SizedBox(width: 10.w),
+                  Text(
+                    AppText.appName,
+                    style: AppTextStyles.bold.copyWith(fontSize: 26.sp),
+                  ),
+                ],
+              ),
+        
+              SizedBox(height: 50.h),
+              Text(
+                "Let's get you set up",
+                style: AppTextStyles.bold.copyWith(fontSize: 32.sp),
+              ),
+              SizedBox(height: 10.h),
+              Text(
+                "Choose how you'd like to continue",
+                style: AppTextStyles.regular.copyWith(
+                  color: AppColors.textPrimary,
                 ),
-              ],
-            ),
-
-            SizedBox(height: 50.h),
-            Text(
-              "Let's get you set up",
-              style: AppTextStyles.bold.copyWith(fontSize: 32.sp),
-            ),
-            SizedBox(height: 10.h),
-            Text(
-              "Choose how you'd like to continue",
-              style: AppTextStyles.regular.copyWith(
-                color: AppColors.textPrimary,
               ),
-            ),
-            SizedBox(height: 40.h),
-            GoogleLogin(),
-            SizedBox(height: 20.h),
-            authOptionContainer(
-              "Continue with phone number",
-              Icons.call_outlined,
-              () {
-                Get.toNamed(AppRoutes.phoneVerify);
-              },
-            ),
-            SizedBox(height: 20.h),
-            authOptionContainer("Sign up with email", Icons.email_outlined, () {
-              Get.toNamed(AppRoutes.signup);
-            }),
-            SizedBox(height: 20.h),
-            Text(
-              "By continuing you agree to our Terms & Privacy Policy.",
-              style: AppTextStyles.regular.copyWith(
-                color: AppColors.textPrimary,
-                fontSize: 12.sp,
+              SizedBox(height: 40.h),
+              GoogleLogin(),
+              SizedBox(height: 20.h),
+              authOptionContainer(
+                "Continue with phone number",
+                Icons.call_outlined,
+                () {
+                  Get.toNamed(AppRoutes.phoneVerify);
+                },
               ),
-            ),
-            Spacer(),
-            alreadyAccount(),
-            SizedBox(height: 50.h),
-          ],
+              SizedBox(height: 20.h),
+              authOptionContainer("Sign up with email", Icons.email_outlined, () {
+                Get.toNamed(AppRoutes.signup);
+              }),
+              SizedBox(height: 20.h),
+              Text(
+                "By continuing you agree to our Terms & Privacy Policy.",
+                style: AppTextStyles.regular.copyWith(
+                  color: AppColors.textPrimary,
+                  fontSize: 12.sp,
+                ),
+              ),
+              Spacer(),
+              alreadyAccount(),
+              SizedBox(height: 50.h),
+            ],
+          ),
         ),
+        ]
       ),
     );
   }

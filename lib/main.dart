@@ -34,7 +34,7 @@ class MyApp extends StatelessWidget {
           locale: DevicePreview.locale(context),
           builder: DevicePreview.appBuilder,
           getPages: AppRoutes.pages,
-          initialRoute: AppRoutes.authScreen,
+          initialRoute: AppRoutes.groupcallScreen,
         );
       },
     );
